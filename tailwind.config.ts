@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
 const config = {
     darkMode: ["class"],
@@ -78,6 +79,11 @@ const config = {
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
+            },
+            fontFamily: {
+                inter: ["var(--font-inter)", ...fontFamily.sans],
+                bricolage: ["var(--font-bricolage)", ...fontFamily.sans],
+                gloock: ["var(--font-gloock)", ...fontFamily.serif],
             },
         },
     },

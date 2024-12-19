@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
-import { Inter } from "next/font/google";
+import { Inter, Bricolage_Grotesque, Gloock } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header/Header";
@@ -8,8 +8,18 @@ import Footer from "@/components/footer/Footer";
 
 const inter = Inter({
     subsets: ["latin"],
-    variable: "--inter",
+    variable: "--font-inter",
     weight: "variable",
+});
+const bricolage = Bricolage_Grotesque({
+    subsets: ["latin"],
+    variable: "--font-bricolage",
+    weight: "variable",
+});
+const gloock = Gloock({
+    subsets: ["latin"],
+    variable: "--font-gloock",
+    weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -23,8 +33,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={inter.className}>
+        <html
+            lang="en"
+            className={`${inter.variable} ${bricolage.variable} ${gloock.variable}`}
+        >
+            <body>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"

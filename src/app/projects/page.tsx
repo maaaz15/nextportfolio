@@ -6,7 +6,7 @@ const ProjectsPage = () => {
         <div className="flex md:gap-24 flex-col lg:grid mt-6 lg:mt-0">
             <div className="md:flex-1 flex flex-col lg:gap-6 gap-4">
                 <FadeUp delay={0.2} duration={0.8}>
-                    <h1 className="lg:text-3xl text-xl font-extrabold text-center lg:text-left dark:text-slate-200">
+                    <h1 className="lg:text-3xl text-xl font-extrabold text-center lg:text-left dark:text-slate-200 font-bricolage">
                         Projects
                     </h1>
                 </FadeUp>

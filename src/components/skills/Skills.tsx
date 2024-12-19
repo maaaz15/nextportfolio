@@ -1,64 +1,78 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { LucideIcon } from "lucide-react";
-import {
-    Code2,
-    FileJson,
-    Palette,
-    Figma as FigmaIcon,
-    Github,
-    Globe,
-    Laptop,
-    Server,
-} from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface Skill {
     name: string;
-    icon: LucideIcon;
-    color: string;
+    imageUrl: string;
     gridArea: string;
 }
 
 const skills: Skill[] = [
-    { name: "HTML", icon: Globe, color: "text-orange-500", gridArea: "a" },
-    { name: "CSS", icon: Palette, color: "text-blue-500", gridArea: "b" },
     {
-        name: "JavaScript",
-        icon: FileJson,
-        color: "text-yellow-500",
+        name: "TypeScript",
+        imageUrl: "/logos/typescript.svg",
+        gridArea: "a",
+    },
+    {
+        name: "TailwindCSS",
+        imageUrl: "/logos/tailwind.svg",
+        gridArea: "b",
+    },
+    {
+        name: "Python",
+        imageUrl: "/logos/python.svg",
         gridArea: "c",
     },
-    { name: "React", icon: Code2, color: "text-cyan-500", gridArea: "d" },
+    {
+        name: "React",
+        imageUrl: "/logos/react.svg",
+        gridArea: "d",
+    },
     {
         name: "Next.js",
-        icon: Server,
-        color: "text-fuchsia-500",
+        imageUrl: "/logos/nextjs.svg",
         gridArea: "e",
     },
-    { name: "Git", icon: Github, color: "text-red-500", gridArea: "f" },
-    { name: "Figma", icon: FigmaIcon, color: "text-purple-500", gridArea: "g" },
     {
-        name: "Responsive Design",
-        icon: Laptop,
-        color: "text-green-500",
+        name: "Git",
+        imageUrl: "/logos/git.svg",
+        gridArea: "f",
+    },
+    {
+        name: "Figma",
+        imageUrl: "/logos/figma-logo.svg",
+        gridArea: "g",
+    },
+    {
+        name: "Appwrite",
+        imageUrl: "/logos/appwrite.svg",
         gridArea: "h",
     },
 ];
 
-const SkillCard = ({ skill }: { skill: Skill }) => (
-    <Card className="hover:shadow-lg transition-shadow duration-300 dark:hover:scale-105 dark:transition-all dark:duration-300 dark:bg-gray-800 h-full">
-        <CardContent className="flex flex-col items-center justify-center p-4 h-full">
-            <skill.icon
-                className={`md:w-8 md:h-8 w-6 h-6 ${skill.color} md:mb-2 mb-1`}
-            />
-            <h3 className="text-xs md:text-md font-semibold dark:text-slate-200 text-center">
-                {skill.name}
-            </h3>
-        </CardContent>
-    </Card>
-);
+const SkillCard = ({ skill }: { skill: Skill }) => {
+    return (
+        <Card className="hover:shadow-lg transition-shadow duration-300 dark:hover:scale-105 dark:transition-all dark:duration-300 dark:bg-gray-800 h-full">
+            <CardContent className="flex flex-col items-center justify-center p-4 h-full">
+                <Image
+                    src={skill.imageUrl}
+                    width={512}
+                    height={512}
+                    className={`md:w-7 md:h-7 w-5 h-5 md:mb-2 mb-1 ${
+                        skill.name === "Next.js" ? "dark:invert" : ""
+                    }`}
+                    alt={`${skill.name} logo`}
+                />
+                <h3 className="text-xs md:text-md font-semibold dark:text-slate-200 text-center">
+                    {skill.name}
+                </h3>
+            </CardContent>
+        </Card>
+    );
+};
 
 const containerVariants = {
     hidden: { opacity: 0 },

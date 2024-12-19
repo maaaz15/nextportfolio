@@ -7,7 +7,7 @@ const ContactPage = () => {
         <div className="flex md:gap-24 flex-col lg:grid lg:grid-cols-2 gap-10">
             <div className="md:flex-1 flex flex-col md:gap-10 gap-8">
                 <FadeUp delay={0.3} duration={0.8}>
-                    <h1 className="lg:text-3xl text-xl font-extrabold text-center lg:text-left dark:text-slate-200">
+                    <h1 className="lg:text-3xl text-xl font-extrabold text-center lg:text-left dark:text-slate-200 font-bricolage">
                         Contact Me
                     </h1>
                 </FadeUp>
