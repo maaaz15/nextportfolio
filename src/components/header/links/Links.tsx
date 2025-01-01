@@ -11,6 +11,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
+interface links {
+    title: string;
+    path: string;
+}
+
 const links = [
     {
         title: "Home",

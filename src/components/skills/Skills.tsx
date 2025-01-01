@@ -55,14 +55,14 @@ const skills: Skill[] = [
 
 const SkillCard = ({ skill }: { skill: Skill }) => {
     return (
-        <Card className="hover:shadow-lg transition-shadow duration-300 dark:hover:scale-105 dark:transition-all dark:duration-300 dark:bg-gray-800 h-full">
-            <CardContent className="flex flex-col items-center justify-center p-4 h-full">
+        <Card className="h-full transition-shadow duration-300 hover:shadow-lg dark:hover:scale-105 dark:transition-all dark:duration-300 dark:bg-gray-800">
+            <CardContent className="flex flex-col items-center justify-center h-full p-4">
                 <Image
                     src={skill.imageUrl}
                     width={512}
                     height={512}
                     className={`md:w-7 md:h-7 w-5 h-5 md:mb-2 mb-1 ${
-                        skill.name === "Next.js" ? "dark:invert" : ""
+                        skill.name === "Next.js" ? "dark:invert " : ""
                     }`}
                     alt={`${skill.name} logo`}
                 />
