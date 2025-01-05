@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { ModeToggle } from "@/components/ui/ModeToggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -11,48 +13,62 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
-interface links {
+interface LinkItem {
     title: string;
     path: string;
 }
 
-const links = [
-    {
-        title: "Home",
-        path: "/",
-    },
-    {
-        title: "Skills",
-        path: "/skills",
-    },
-    {
-        title: "Projects",
-        path: "/projects",
-    },
-    {
-        title: "Contact",
-        path: "/contact",
-    },
+const links: LinkItem[] = [
+    { title: "Home", path: "/" },
+    { title: "Skills", path: "/skills" },
+    { title: "Projects", path: "/projects" },
+    { title: "Contact", path: "/contact" },
 ];
 
 const Links = () => {
     const pathName = usePathname();
+    const [pillStyle, setPillStyle] = useState({ x: 0, width: 0 });
+    const linkRefs = useRef<HTMLAnchorElement[]>([]);
+
+    useEffect(() => {
+        const activeIndex = links.findIndex((link) => link.path === pathName);
+
+        if (activeIndex !== -1 && linkRefs.current[activeIndex]) {
+            const activeLink = linkRefs.current[activeIndex];
+            const { offsetLeft, offsetWidth } = activeLink;
+
+            setPillStyle({ x: offsetLeft, width: offsetWidth });
+        }
+    }, [pathName]);
+
     return (
-        <div className="">
-            <div className="items-center hidden lg:flex lg:gap-6">
-                {links.map((link) => (
+        <div>
+            <div className="lg:relative items-center hidden lg:flex lg:gap-6">
+                <motion.div
+                    className="absolute h-10 bg-black dark:bg-white rounded-2xl z-10"
+                    animate={pillStyle}
+                    transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 30,
+                    }}
+                />
+                {links.map((link, index) => (
                     <Link
                         href={link.path}
                         key={link.title}
-                        className={`${"p-2.5 rounded-3xl md:max-lg:min-w-20 min-w-20 font-bold text-sm text-center"} ${
-                            pathName === link.path &&
-                            "dark:bg-white dark:text-black bg-black text-white hover:scale-110 hover:rounded duration-200 text-sm"
+                        ref={(el) => {
+                            linkRefs.current[index] = el!;
+                        }}
+                        className={`z-10 px-6 rounded-3xl font-bold text-sm text-center  ${
+                            pathName === link.path
+                                ? "text-white dark:text-black"
+                                : ""
                         }`}
                     >
                         {link.title}
                     </Link>
                 ))}
-                {""}
                 <ModeToggle />
             </div>
             <div className="flex lg:hidden gap-4">
@@ -72,27 +88,23 @@ const Links = () => {
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                     d="M4 6h16M4 12h16M4 18h16"
                                 ></path>
                             </svg>
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <DropdownMenuItem className="m-2 cursor-pointer">
-                            <Link href="/">About</Link>{" "}
-                        </DropdownMenuItem>
-                        <DropdownMenuItem className="m-2 cursor-pointer">
-                            <Link href="/skills">Skills</Link>{" "}
-                        </DropdownMenuItem>
-                        <DropdownMenuItem className="m-2 cursor-pointer">
-                            <Link href="/projects">Projects</Link>{" "}
-                        </DropdownMenuItem>
-                        <DropdownMenuItem className="m-2 cursor-pointer">
-                            <Link href="/contact">Contact</Link>{" "}
-                        </DropdownMenuItem>
+                        {links.map((link) => (
+                            <DropdownMenuItem
+                                key={link.title}
+                                className="m-2 cursor-pointer"
+                            >
+                                <Link href={link.path}>{link.title}</Link>
+                            </DropdownMenuItem>
+                        ))}
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
