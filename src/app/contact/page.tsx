@@ -26,7 +26,7 @@ const ContactPage = () => {
                         </Link>
                         <Link
                             href={
-                                "https://ik.imagekit.io/maaz/Maaz%20Resume.pdf?updatedAt=1725805615629"
+                                "https://ik.imagekit.io/maaz/Maaz_Resume.pdf?updatedAt=1738443156775"
                             }
                             target="_blank"
                         >

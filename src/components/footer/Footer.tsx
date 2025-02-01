@@ -8,7 +8,7 @@ const Footer = () => {
             <FadeUp delay={0.8} duration={1}>
                 <div className="flex items-center space-x-8 my-2">
                     <Link
-                        href="https://github.com/maaaz15"
+                        href="https://github.com/maazts"
                         target="_blank"
                         className="block"
                     >
@@ -16,7 +16,7 @@ const Footer = () => {
                         <Github className="h-6 w-6 dark:text-slate-400 dark:hover:text-slate-200 text-gray-500 hover:text-black duration-200" />
                     </Link>
                     <Link
-                        href="https://www.linkedin.com/in/maaaz15/"
+                        href="https://www.linkedin.com/in/maazts/"
                         target="_blank"
                         className="block"
                     >
